@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Poppins;
+}
+body {
+  background-color: hsl(0, 0%, 86%);
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 2em 3em;
+  margin: auto;
+  width: 50em;
+  height: 40em;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 2em 2em 15em 2em;
+  position: relative;
+}
+
+form {
+  display: flex;
+  box-sizing: border-box;
+  gap: 40px;
+  flex-direction: row;
+}
+
+input {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid hsl(0, 0%, 86%);
+  font-size: 25px;
+  box-sizing: border-box;
+  width: 5em;
+}
+input:focus {
+  border: 1px solid hsl(259, 100%, 65%);
+  outline: hsl(259, 100%, 65%);
+}
+
+.br {
+  border: solid 1px hsl(0, 0%, 86%);
+  width: 80%;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+  background-color: hsl(259, 100%, 65%);
+  border: none;
+  padding: 1em;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  transition: background-color 2s; /* Déplacer la transition ici pour s'appliquer dans tous les cas */
+}
+
+button:hover {
+  background-color: #000000;
+  background-image: linear-gradient(to bottom, transparent 0%, #000000 50%);
+  background-position: top;
+}
+
+button:active {
+  background-color: hsl(0, 1%, 44%);
+  transition: background-color 0.1ms;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.collpasediv {
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+}
+
+.period {
+  display: flex;
+  :nth-child(1) {
+    letter-spacing: 10px;
+    color: hsl(259, 100%, 65%);
+  }
+  h1 {
+    font-size: 75px;
+    font-style: italic;
+  }
+}
+
+@media (max-width: 375px) {
+  .content {
+    padding: 1em 2em;
+    margin: auto 10px;
+    width: 25em;
+    height: 20em;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 1em 1em 5em 1em;
+  }
+  form {
+    width: 100%;
+    gap: 18px;
+  }
+  input {
+    margin-top: 5px;
+    padding: 4px 14px;
+    border-radius: 6px;
+    border: 1px solid gray;
+    font-size: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 2em;
+  }
+}
