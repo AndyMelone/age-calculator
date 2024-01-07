@@ -33,7 +33,7 @@ form {
   flex-direction: row;
 }
 
-input {
+.inputdiv {
   margin-top: 10px;
   padding: 10px 15px;
   border-radius: 5px;
@@ -42,9 +42,23 @@ input {
   box-sizing: border-box;
   width: 5em;
 }
-input:focus {
+.inputdiv:focus {
   border: 1px solid hsl(259, 100%, 65%);
   outline: hsl(259, 100%, 65%);
+}
+
+.inputdivErr {
+  border-color: hsl(0, 100%, 67%);
+}
+
+.colorRed {
+  color: hsl(0, 100%, 67%);
+}
+
+.wordtop {
+  color: "hsl(0, 1%, 44%)";
+  font-size: 12px;
+  letter-spacing: 2;
 }
 
 .br {
@@ -78,14 +92,14 @@ button:active {
 }
 
 /* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+.inputdiv::-webkit-outer-spin-button,
+.inputdiv::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /* Firefox */
-input[type="number"] {
+.inputdiv[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -120,7 +134,7 @@ input[type="number"] {
     width: 100%;
     gap: 18px;
   }
-  input {
+  .inputdiv {
     margin-top: 5px;
     padding: 4px 14px;
     border-radius: 6px;

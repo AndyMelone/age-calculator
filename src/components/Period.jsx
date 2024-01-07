@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export default function Period({ periodValue, period }) {
   return (
     <div className="period">

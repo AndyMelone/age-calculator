@@ -8,42 +8,125 @@ export default function App() {
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
-  // eslint-disable-next-line no-unused-vars
+
+  const [errorDay, setErrorDay] = useState(false);
+  const [errorMonth, setErrorMonth] = useState(false);
+  const [errorYear, setErrorYear] = useState(false);
+
   let isError = false;
+
   const handlesubmite = (e) => {
     // toast("ok");
     e.preventDefault();
+
+    setErrorDay(false);
+    setErrorMonth(false);
+    setErrorYear(false);
+
+    // date actuelle
+    let currentDay = new Date().getUTCDate();
+    let currentMonth = new Date().getUTCMonth() + 1;
+    let currentYear = new Date().getUTCFullYear();
+
+    // date de naissance
     const formData = new FormData(e.currentTarget);
-    let currentDay = formData.get("day");
-    let currentMonth = formData.get("month");
-    let currentYear = formData.get("year");
-    if (
-      currentDay > 31 ||
-      currentDay < 1 ||
-      currentMonth > 12 ||
-      currentMonth < 1 ||
-      currentYear < 1 ||
-      currentDay > new Date().getFullYear()
-    ) {
+    let oldDay = formData.get("day");
+    let oldMonth = formData.get("month");
+    let oldYear = formData.get("year");
+
+    // intervalle du jour
+    if (oldDay > 31 || oldDay < 1) {
+      setErrorDay(true);
       isError = true;
-    } else {
-      setDay(currentDay);
-      setMonth(currentMonth);
-      setYear(new Date().getFullYear() - currentYear);
+    }
+    // intervalle du mois
+    if (oldMonth > 12 || oldMonth < 1) {
+      isError = true;
+      setErrorMonth(true);
     }
 
-    // console.log(day, month, year);
-    console.log(isError);
+    // intervalle de l'année
+    if (
+      oldYear < 1 ||
+      oldDay > new Date().getFullYear() ||
+      oldYear > currentYear
+    ) {
+      isError = true;
+      setErrorYear(true);
+    }
+
+    // validation
+    if (isError === false) {
+      if (currentDay < oldDay) {
+        if (currentMonth < oldMonth) {
+          (currentYear = currentYear - 1),
+            (currentMonth = currentMonth + 11),
+            (currentDay = currentDay + 30);
+        } else
+          (currentMonth = currentMonth - 1), (currentDay = currentDay + 30);
+      } else {
+        if (currentMonth < oldMonth) {
+          (currentYear = currentYear - 1), (currentMonth = currentMonth + 12);
+        } else {
+          currentDay = currentDay + 0;
+          currentMonth = currentMonth + 0;
+        }
+      }
+
+      let numberOfYear = currentYear - oldYear;
+      let numberOfMonth = currentMonth - oldMonth;
+      let numberOfDay = currentDay - oldDay;
+
+      if (numberOfYear === 0) {
+        numberOfYear = "0";
+      }
+      if (numberOfMonth === 0) {
+        numberOfMonth = "0";
+      }
+      if (numberOfDay === 0) {
+        numberOfDay = "0";
+      }
+
+      setDay(numberOfDay);
+      setMonth(numberOfMonth);
+      setYear(numberOfYear);
+
+      if ((numberOfDay == 0) & (numberOfMonth == 0) & (numberOfYear != 0)) {
+        toast.success(`Happy birthday, you are ${numberOfYear} old 🥳🎊`);
+      } else {
+        toast.success(
+          `Congratulation you are ${numberOfYear} year ${numberOfMonth} month ${numberOfDay} day`
+        );
+      }
+    } else {
+      toast.error("une erreur est survenue");
+    }
   };
 
   return (
     <div className="container">
       <Toaster />
+
       <div className="content">
         <form onSubmit={handlesubmite} id="form">
-          <Input placeholder="DD" label="DAY" name="day" />
-          <Input placeholder="MM" label="MONTH" name="month" />
-          <Input placeholder="YYYY" label="YEAR" name="year" />
+          <Input
+            placeholder="DD"
+            label="DAY"
+            name="day"
+            errorInput={errorDay}
+          />
+          <Input
+            placeholder="MM"
+            label="MONTH"
+            name="month"
+            errorInput={errorMonth}
+          />
+          <Input
+            placeholder="YYYY"
+            label="YEAR"
+            name="year"
+            errorInput={errorYear}
+          />
         </form>
 
         <div className="collpasediv">
