@@ -1,7 +1,7 @@
 import Input from "./components/Input";
 import { InlineIcon } from "@iconify/react";
 import Period from "./components/Period";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function App() {
@@ -16,7 +16,6 @@ export default function App() {
   let isError = false;
 
   const handlesubmite = (e) => {
-    // toast("ok");
     e.preventDefault();
 
     setErrorDay(false);
@@ -57,6 +56,7 @@ export default function App() {
 
     // validation
     if (isError === false) {
+      //  calcul des jours, mois et années
       if (currentDay < oldDay) {
         if (currentMonth < oldMonth) {
           (currentYear = currentYear - 1),
@@ -91,6 +91,7 @@ export default function App() {
       setMonth(numberOfMonth);
       setYear(numberOfYear);
 
+      // toast notification
       if ((numberOfDay == 0) & (numberOfMonth == 0) & (numberOfYear != 0)) {
         toast.success(`Happy birthday, you are ${numberOfYear} old 🥳🎊`);
       } else {
@@ -103,6 +104,9 @@ export default function App() {
     }
   };
 
+  useEffect(() => {
+    toast("welcom to age calculator app");
+  }, []);
   return (
     <div className="container">
       <Toaster />

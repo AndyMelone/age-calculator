@@ -79,7 +79,7 @@ button {
   justify-content: center;
   align-items: center;
   cursor: grab;
-  transition: background-color 2s; /* Déplacer la transition ici pour s'appliquer dans tous les cas */
+  transition: background-color 2s;
 }
 
 button:hover {
