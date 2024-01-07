@@ -38,9 +38,11 @@ form {
   padding: 10px 15px;
   border-radius: 5px;
   border: 1px solid hsl(0, 0%, 86%);
-  font-size: 25px;
+  font-size: 27px;
   box-sizing: border-box;
   width: 5em;
+  cursor: grab;
+  font-weight: bold;
 }
 .inputdiv:focus {
   border: 1px solid hsl(259, 100%, 65%);
@@ -116,8 +118,9 @@ button:active {
     color: hsl(259, 100%, 65%);
   }
   h1 {
-    font-size: 75px;
+    font-size: 120px;
     font-style: italic;
+    font-weight: bold;
   }
 }
 
@@ -126,7 +129,7 @@ button:active {
     padding: 1em 2em;
     margin: auto 10px;
     width: 25em;
-    height: 20em;
+    height: 25em;
     background-color: hsl(0, 0%, 100%);
     border-radius: 1em 1em 5em 1em;
   }
@@ -143,5 +146,17 @@ button:active {
     box-sizing: border-box;
     width: 100%;
     height: 2em;
+  }
+  .period {
+    display: flex;
+    :nth-child(1) {
+      letter-spacing: 10px;
+      color: hsl(259, 100%, 65%);
+    }
+    h1 {
+      font-size: 60px;
+      font-style: italic;
+      font-weight: bold;
+    }
   }
 }
